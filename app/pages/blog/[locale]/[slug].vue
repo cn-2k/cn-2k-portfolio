@@ -1,14 +1,25 @@
 <script lang="ts" setup>
 const route = useRoute()
+const { locale, locales } = useI18n()
 
-const { data: post } = await useAsyncData(`writing:${route.params.slug}`, () => queryContent(`/blog/${route.params.slug}`).findOne())
+const contentPath = computed(() => `/blog/${locale.value}/${route.params.slug}`)
+
+const { data: post } = await useAsyncData(`writing:${route.params.slug}`, () =>
+  queryContent(contentPath.value).findOne())
+
+watch(
+  () => locale.value,
+  async () => {
+    await useAsyncData(`writing:${route.params.slug}`, () =>
+      queryContent(contentPath.value).findOne())
+  },
+)
 
 const {
   data: postDB,
   refresh,
 } = await useAsyncData(`writing:${route.params.slug}:db`, () => $fetch(`/api/posts/${route.params.slug}`, { method: 'POST' }))
 
-const { locale, locales } = useI18n()
 const currentLocale = computed(() => locales.value.filter(l => l.code === locale.value)[0])
 
 const { t } = useI18n({

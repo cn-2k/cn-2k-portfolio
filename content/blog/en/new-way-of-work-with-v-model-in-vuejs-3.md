@@ -39,7 +39,7 @@ Very clean, right?
 
 You can also type your `v-model`:
 
-```js
+```ts
 const model = defineModel<string>()
 ```
 

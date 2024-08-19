@@ -4,25 +4,35 @@ const { t } = useI18n({
 })
 
 const { locale, locales } = useI18n()
-const currentLocale = computed(() => locales.value.filter(l => l.code === locale.value)[0])
+const currentLocale = computed(() => locales.value.find(l => l.code === locale.value) || { code: 'en' })
 
 useSeoMeta({
   title: 'Blog',
   description: t('description'),
 })
 
+// Determine o caminho do conteúdo com base no idioma
+const contentPath = computed(() => `/blog/${currentLocale.value.code}`)
+
 const { data: writings } = await useAsyncData('all-writings', () =>
-  queryContent('/blog').sort({ published: -1 }).without('body').find())
+  queryContent(contentPath.value).sort({ published: -1 }).without('body').find())
 
 const { data: writingsDB } = await useAsyncData('all-writings-db', () =>
   $fetch(`/api/posts`))
 
-function getDetails(slug: string) {
-  const writing = writingsDB.value!.find(writing => writing.slug === slug)
-  if (!writing)
-    return ''
+watch(
+  () => currentLocale.value.code,
+  async () => {
+    await useAsyncData('all-writings', () =>
+      queryContent(contentPath.value).sort({ published: -1 }).without('body').find())
+  },
+)
 
-  return writing as any
+function getDetails(slug: string) {
+  const writing = writingsDB.value?.find(w => w.slug === slug)
+  if (!writing)
+    return { views: 0, likes: 0 }
+  return writing
 }
 </script>
 

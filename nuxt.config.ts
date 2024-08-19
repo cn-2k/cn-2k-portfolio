@@ -33,6 +33,13 @@ export default defineNuxtConfig({
 
   // Nuxt Content
   content: {
+    sources: {
+      blog: {
+        prefix: '/blog',
+        driver: 'fs',
+        base: '/content/blog',
+      },
+    },
     highlight: {
       theme: 'github-dark',
     },
