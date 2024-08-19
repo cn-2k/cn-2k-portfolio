@@ -88,7 +88,7 @@ async function handleLike() {
             class="items-center flex gap-1"
           >
             <UIcon name="i-heroicons-eye" class="w-5 h-5" />
-            <p>{{ postDB.views }}</p>
+            <p>{{ postDB.views ?? 0 }}</p>
           </span>
           <p class="font-black">
             ·
@@ -97,7 +97,7 @@ async function handleLike() {
             class="items-center flex gap-1"
           >
             <UIcon name="i-heroicons-heart-solid" class="w-5 h-5 text-red-500" />
-            <p>{{ postDB.likes }}</p>
+            <p>{{ postDB.likes ?? 0 }}</p>
           </span>
         </div>
       </div>

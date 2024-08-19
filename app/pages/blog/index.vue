@@ -68,7 +68,7 @@ function getDetails(slug: string) {
                   class="items-center flex gap-1"
                 >
                   <UIcon name="i-heroicons-eye" class="w-5 h-5" />
-                  <p>{{ getDetails(writing.slug).views }}</p>
+                  <p>{{ getDetails(writing.slug).views ?? 0 }}</p>
                 </span>
                 <p class="font-black">
                   ·
@@ -77,7 +77,7 @@ function getDetails(slug: string) {
                   class="items-center flex gap-1"
                 >
                   <UIcon name="i-heroicons-heart-solid" class="w-5 h-5 text-red-500" />
-                  <p>{{ getDetails(writing.slug).likes }}</p>
+                  <p>{{ getDetails(writing.slug).likes ?? 0 }}</p>
                 </span>
               </div>
             </div>
