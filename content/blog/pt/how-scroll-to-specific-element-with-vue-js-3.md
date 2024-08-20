@@ -1,13 +1,13 @@
 ---
 slug: how-scroll-to-specific-element-with-vue-js-3
-title: How scroll to specific element with Vue.js 3
-description: In this post I'll show how to scroll to specific element in Vue.js 3.
+title: Como rolar para um componente específico no Vue.js 3
+description: Nesse post eu vou te mostrar como scrollar para um componente específico no Vue.js 3.
 publishedAt: 2023/11/21
 ---
 
-Sometimes, we need to make a scroll go to specific section/element of our page. Achieving this with Vue is very simple; you just need to use a [template ref](https://vuejs.org/guide/essentials/template-refs.html) for that. Let's see how to do it.
+Às vezes, precisamos fazer um scroll para uma seção/elemento específico da nossa página. Conseguir isso com Vue é muito simples; você só precisar usar uma [template ref](https://vuejs.org/guide/essentials/template-refs.html) para isso. Vamos ver como fazer isso.
 
-1 - Create a component template and give it a `ref` attribute:
+1 - Crie um template de componente e adicione a ele um atributo `ref`:
 
 ```vue
 <template>
@@ -19,7 +19,7 @@ Sometimes, we need to make a scroll go to specific section/element of our page. 
 </template>
 ```
 
-2 - Create the `script` section and declare your `ref` inside it:
+2 - Crie a seção `script` e declare sua `ref` dentro dela:
 
 ```vue
 <script setup lang="ts">
@@ -30,7 +30,7 @@ const sectionRefEl = ref<HTMLElement | null>(null)
 </script>
 ```
 
-3 - Create a function that make the scroll happen:
+3 - Crie uma função que faz com que o scroll aconteça:
 
 ```vue
 <script setup lang="ts">
@@ -46,13 +46,13 @@ function scrollTo(view: Ref<HTMLElement | null>) {
 </script>
 ```
 
-The `scrollTo` function accepts a `ref` parameter and enables scrolling by using the `DOM API` function `scrollIntoView()`.
+A função `scrollTo` aceita um parâmetro `ref` e permite o scroll usando a função `scrollIntoView()` da `DOM API`.
 
-> Read more about the [scrollIntoView()](**https://developer.mozilla.org/pt-BR/docs/Web/API/Element/scrollIntoView**) function to learn more.
+> Leia mais sobre a função [scrollIntoView()](**https://developer.mozilla.org/pt-BR/docs/Web/API/Element/scrollIntoView**) para saber mais.
 
-4 - Now you just need to call your function anywhere you want, passing a `ref` as param and see the scroll happening.
+4 - Agora você só precisa chamar sua função em qualquer lugar que desejar, passando uma `ref` como parâmetro e ver o scroll acontecendo.
 
-For example, you can create a button firing the method:
+Por exemplo, você pode criar um botão que executa o método:
 
 ```vue
 <template>
@@ -67,9 +67,9 @@ For example, you can create a button firing the method:
 </template>
 ```
 
-And that's it!
+E é isso!
 
-**Further reading:**
+**Leitura complementar:**
 
 [Template Refs (Vuejs) ](https://vuejs.org/guide/essentials/template-refs.html#ref-on-component)
 
